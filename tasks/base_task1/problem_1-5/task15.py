@@ -1,8 +1,10 @@
 from typing import List
 
 
-def hello(name: str) -> str:
-    pass
+def hello(name: str = None) -> str:
+    if name == None or name == "":
+        return "Hello!"
+    return "Hello, " + name + "!"
 
 
 def int_to_roman(num: int) -> str:
@@ -20,4 +22,3 @@ def primes() -> int:
 class BankCard:
     def __init__(self, total_sum: int, balance_limit: int):
         pass
-
