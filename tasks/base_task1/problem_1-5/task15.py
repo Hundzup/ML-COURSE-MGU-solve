@@ -51,7 +51,17 @@ def int_to_roman(num: int) -> str:
 
 
 def longest_common_prefix(strs_input: List[str]) -> str:
-    pass
+    if not strs_input:
+        return ""
+    strs = [s.lstrip() for s in strs_input]
+    shortest = min(strs, key=len)
+
+    for i, ch in enumerate(shortest):
+        for s in strs:
+            if s[i] != ch:
+                return shortest[:i]
+
+    return shortest
 
 
 def primes() -> int:
