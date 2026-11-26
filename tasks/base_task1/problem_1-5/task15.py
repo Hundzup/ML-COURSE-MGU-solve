@@ -65,7 +65,23 @@ def longest_common_prefix(strs_input: List[str]) -> str:
 
 
 def primes() -> int:
-    yield
+    n = 2
+    while True:
+        if n == 2:
+            yield n
+        elif n == 3:
+            yield n
+        else:
+            if n % 2 != 0:
+                prime = True
+                for i in range(2, n):
+                    if n % i == 0:
+                        prime = False
+                        break
+                if prime:
+                    yield n
+
+        n += 1
 
 
 class BankCard:
