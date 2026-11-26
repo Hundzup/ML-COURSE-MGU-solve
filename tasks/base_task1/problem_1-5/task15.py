@@ -69,5 +69,34 @@ def primes() -> int:
 
 
 class BankCard:
-    def __init__(self, total_sum: int, balance_limit: int):
-        pass
+    def __init__(self, total_sum: int, balance_limit: int = -1):
+        self.total_sum = total_sum
+        self.balance_limit = balance_limit
+
+    def __call__(self, sum_spend):
+        if sum_spend <= self.total_sum:
+            self.total_sum -= sum_spend
+            print(f"You spend {sum_spend} dollars.")
+        else:
+            raise ValueError("Not enough money to spend sum_spent dollars.")
+
+    def __repr__(self):
+        return "To learn the balance call balance."
+
+    @property
+    def balance(self):
+        if self.balance_limit == 0:
+            raise ValueError("Balance check limits exceeded.")
+        else:
+            self.balance_limit -= 1
+            return self.total_sum
+
+    def put(self, sum_put):
+        self.total_sum += sum_put
+        print(f"You put {sum_put} dollars.")
+
+    def __add__(self, x):
+        self.total_sum += x.total_sum
+        if self.balance_limit < x.balance_limit:
+            self.balance_limit = x.balance_limit
+        return BankCard(self.total_sum, self.balance_limit)
